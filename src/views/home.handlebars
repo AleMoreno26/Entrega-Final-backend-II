@@ -1,0 +1,20 @@
+<h1>Mis Productos</h1>
+<div class="contenedor">
+    {{#each productos}}
+    <div class="card">
+        <p>{{this.titulo}}</p>
+        <p>{{this.descripcion}}</p>
+        <p>{{this.precio}}</p>
+        <button onclick="eliminarProducto({{this.id}})">Eliminar</button>
+    </div>
+    {{/each}}
+</div>
+<form id="nuevoProductoForm">
+    <input type="text" name="titulo" placeholder="Título">
+    <input type="text" name="descripcion" placeholder="Descripción">
+    <input type="number" name="precio" placeholder="Precio">
+    <input type="text" name="codigo" placeholder="Código">
+    <input type="number" name="stock" placeholder="Stock">
+    <button type="submit">Agregar Producto</button>
+</form>
+

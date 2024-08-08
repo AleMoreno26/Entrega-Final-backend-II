@@ -1,0 +1,23 @@
+[
+  {
+    "titulo": "Medialunas",
+    "descripcion": "Producto congelado, con precocción",
+    "precio": 2500,
+    "codigo": "abc123",
+    "stock": 25
+  },
+  {
+    "titulo": "Donout",
+    "descripcion": "",
+    "precio": null,
+    "codigo": "",
+    "stock": null
+  },
+  {
+    "titulo": "Donout",
+    "descripcion": "Producto congelado, con precocción",
+    "precio": 2900,
+    "codigo": "abc123",
+    "stock": 25
+  }
+]
