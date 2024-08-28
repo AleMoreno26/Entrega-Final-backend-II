@@ -2,12 +2,30 @@
 <div class="contenedor">
     {{#each productos}}
     <div class="card">
-        <p>{{this.titulo}}</p>
-        <p>{{this.descripcion}}</p>
-        <p>{{this.precio}}</p>
-        <button onclick="eliminarProducto({{this.id}})">Eliminar</button>
+        <p>{{this.title}}</p>
+        <p>Descripcion:{{this.description}}</p>
+        <p>Precio:{{this.price}}</p>
+        <p>Codigo:{{this.code}}</p>
+        <p>Stock:{{this.stock}}</p>
+        <p>Categoria:{{this.category}}</p>
+        <p>{{this.thumbnails}}</p>
+        <button onclick="agregarCarrito({{this.id}})">AGREGAR AL CARRITO</button>
     </div>
     {{/each}}
+
+     <div class="pagination">
+        {{#if hasPrevPage}}
+            <a href="/products?page={{prevPage}}"> Anterior </a>
+        {{/if}}
+
+        <span> Página {{currentPage}} de {{totalPages}} </span>
+
+        {{#if hasNextPage}}
+            <a href="/products?page={{nextPage}}"> Siguiente </a>
+        {{/if}}
+    </div>
+</div>
+
 </div>
 <form id="nuevoProductoForm">
     <input type="text" name="titulo" placeholder="Título">
@@ -17,4 +35,3 @@
     <input type="number" name="stock" placeholder="Stock">
     <button type="submit">Agregar Producto</button>
 </form>
-

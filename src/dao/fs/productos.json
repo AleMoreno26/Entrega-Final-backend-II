@@ -1,0 +1,122 @@
+[
+  {
+    "id": 7,
+    "titulo": "Pan de Choco",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/PandeChoco-1-300x300.jpg",
+    "categoria": "Desayunos",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2500
+  },
+  {
+    "id": 8,
+    "titulo": "Frola",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/PASTAFROLA-1-300x300.jpg",
+    "categoria": "Meriendas",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2000
+  },
+  {
+    "id": 9,
+    "titulo": "Brownie",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/BROWNIE-1-300x300.jpg",
+    "categoria": "Meriendas",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2000
+  },
+  {
+    "id": 10,
+    "descripcion": "Producto congelado, con precocción",
+    "titulo": "Bagel Tres Quesos",
+    "imagen": "../img/BAGEL_JyQ.jpg",
+    "categoria": "Meriendas",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2500
+  },
+  {
+    "id": 11,
+    "titulo": "Budin Frutos Secos",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/BUDIN_Frutossecos-1-300x300.jpg",
+    "categoria": "Meriendas",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2500
+  },
+  {
+    "id": 12,
+    "titulo": "Croque",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/CroqueMonsieur-300x300.jpg",
+    "categoria": "Meriendas",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2500
+  },
+  {
+    "id": 13,
+    "titulo": "Budin Banana y DDL",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/BUDIN_BananaDDL-300x300.jpg",
+    "categoria": "Meriendas",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2500
+  },
+  {
+    "id": 14,
+    "titulo": "Hamburguesa",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/Almuerzo.jpg",
+    "categoria": "Almuerzos",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 5500
+  },
+  {
+    "id": 15,
+    "titulo": "Ensalada Cesar",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/Ensalada-Cesar-cortada-600x443-1-300x300.jpg",
+    "categoria": "Almuerzos",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 4500
+  },
+  {
+    "id": 16,
+    "titulo": "Ensalada Mix vegetales",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/EnsaladaMixde-Veg.jpg",
+    "categoria": "Almuerzos",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 4500
+  },
+  {
+    "id": 17,
+    "titulo": "Empanadas",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/EMPANADAS-1-300x300.jpg",
+    "categoria": "Almuerzos",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 2500
+  },
+  {
+    "id": 18,
+    "titulo": "Panini J y Q",
+    "descripcion": "Producto congelado, con precocción",
+    "imagen": "../img/PAniniJQTH.jpg",
+    "categoria": "Almuerzos",
+    "codigo": "abc123",
+    "stock": 25,
+    "precio": 3500
+  }
+]

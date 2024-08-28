@@ -1,15 +1,25 @@
-<h2>Productos en Tiempo Real</h2>
-<div id="contenedorProductos"></div>
 
-<form id="nuevoProductoForm">
-    <input type="text" name="titulo" placeholder="Título">
-    <input type="text" name="descripcion" placeholder="Descripción">
-    <input type="number" name="precio" placeholder="Precio">
-    <input type="text" name="codigo" placeholder="Código">
-    <input type="number" name="stock" placeholder="Stock">
-    <button type="submit">Agregar Producto</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos en Tiempo Real</title>
+</head>
+<body>
+    <h2>Productos en Tiempo Real</h2>
+    <div id="contenedorProductos"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
-<script src="/js/main.js"></script>
+    <form id="nuevoProductoForm">
+        <input type="text" name="titulo" placeholder="Título" required>
+        <input type="text" name="descripcion" placeholder="Descripción" required>
+        <input type="number" name="precio" placeholder="Precio" required>
+        <input type="text" name="codigo" placeholder="Código" required>
+        <input type="number" name="stock" placeholder="Stock" required>
+        <button type="submit">Agregar Producto</button>
+    </form>
 
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
