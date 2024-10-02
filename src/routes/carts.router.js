@@ -4,6 +4,22 @@ import CartManager from '../dao/db/cart-manager-db.js';
 const router = Router();
 const cartManager = new CartManager();
 
+// Ruta para visualizar los productos en un carrito específico
+router.get('/cart/:cid', async (req, res) => {
+    const carritoId = req.params.cid;
+
+    try {
+        const carrito = await cartManager.getCarritoById(carritoId);
+    
+        // Convierte los productos a objetos planos para Handlebars
+        const productos = carrito.products.map(product => product.toObject());
+        res.render('carts', { productos });
+    } catch (error) {
+        res.status(500).send('Error al cargar el carrito');
+    }
+});
+
+
 // Ruta para crear un nuevo carrito
 router.post('/', async (req, res) => {
     try {

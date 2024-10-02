@@ -60,9 +60,17 @@ form button:hover {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
-    width: 220px; 
+    width: 220px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px; 
 }
 
 .card p {

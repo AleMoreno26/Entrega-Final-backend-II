@@ -16,8 +16,12 @@ class CartManager {
     // Retornar un carrito por ID
     async getCarritoById(carritoId) {
         try {
-            const carrito = await CartModel.findById(carritoId);
-
+            //populate para incluir los detalles del producto
+            const carrito = await CartModel.findById(carritoId)
+                .populate('products.product') // campo 'product' referenciado en tu modelo
+                .exec();
+                
+    
             if (!carrito) {
                 console.log("No existe carrito con ese ID");
                 return null;

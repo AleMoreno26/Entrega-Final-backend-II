@@ -4,14 +4,27 @@ import ProductRouter from './routes/products.router.js';
 import CartRouter from './routes/carts.router.js';
 import ViewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
-import DataBase from './database.js'
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import MongoStore from "connect-mongo";
+import sessionsRouter from "./routes/sessions.router.js";
+import viewsRouter from "./routes/views.router.js";
+import "./database.js"
+import passport from 'passport';
+import initializePassport from './config/passport.config.js';
 
 // Inicializa el servidor Express
 const app = express();
 const PUERTO = 8080;
 
 // Configura el motor de plantillas
-app.engine('handlebars', exphbs.engine());
+app.engine('handlebars', exphbs.engine({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    }
+}));
+
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 
@@ -20,11 +33,16 @@ app.set('views', './src/views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./src/public"));
+app.use(cookieParser());
+initializePassport();
+app.use(passport.initialize());
+
 
 // Rutas
 app.use('/api/products', ProductRouter);
 app.use('/api/carts', CartRouter);
 app.use('/', ViewsRouter);
+app.use("/api/sessions", sessionsRouter); 
 
 
 // Configura el puerto y arranca el servidor

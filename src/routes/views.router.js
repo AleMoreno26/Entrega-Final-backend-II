@@ -5,6 +5,21 @@ import ProductModel from '../dao/models/product.models.js';
 const manager = new ProductManager();
 
 
+router.get("/login", (req, res) => {
+    res.render("login"); 
+})
+router.get("/register", (req, res) => {
+    res.render("register"); 
+})
+
+router.get("/home", (req, res) => {
+     res.render("home"); 
+ })
+
+
+
+// ruta products
+
 router.get('/products', async (req, res) => {
     let page = req.query.page || 1;
     let limit = 4;
@@ -25,6 +40,12 @@ router.get('/products', async (req, res) => {
         totalPages: paginacion.totalPages
      });
 });  
+
+router.get('/carts', async (req, res) => {
+    const productos = await manager.getProducts();
+    res.render('carts', { productos });
+});
+
 
 router.get('/realtimeproducts', async (req, res) => {
     const productos = await manager.getProducts();

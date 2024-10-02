@@ -11,6 +11,7 @@ class ProductManager {
         
 
             const existeProducto = await ProductModel.findOne({ code: code });
+            
             if (existeProducto) {
                 
                 return;

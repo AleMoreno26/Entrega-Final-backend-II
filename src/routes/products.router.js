@@ -6,7 +6,7 @@ const manager = new ProductManager();
 
 router.get("/", async (req, res) => {
     const limit = req.query.limit;
-    const sort = req.query.sort;
+    const sort = req.query.sort; // Obtener el parámetro 'sort' de la query
 
     try {
         let arrayProductos = await manager.getProducts();
@@ -67,7 +67,7 @@ router.delete('/:pid', async (req, res) => {
     try {
         await manager.deleteProduct(id);
         const productosActualizados = await manager.getProducts();
-        req.app.get('io').emit('productos', productosActualizados); 
+        req.app.get('io').emit('productos', productosActualizados);  // Emitir evento
 
         res.status(200).send('Producto eliminado');
     } catch (error) {
