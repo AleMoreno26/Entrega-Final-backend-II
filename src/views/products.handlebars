@@ -1,0 +1,40 @@
+<h1>Mis Productos</h1>
+<div class="contenedor">
+    {{#each productos}}
+    <div class="card">
+        <img src="{{this.thumbnails}}" alt="{{this.title}}" style="width: 100px; height: 100px;">
+        <p>{{this.title}}</p>
+        <p>Descripción: {{this.description}}</p>
+        <p>Precio: {{this.price}}</p>
+        <p>Código: {{this.code}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>Categoría: {{this.category}}</p>
+
+        <!-- Formulario para agregar al carrito -->
+        <form action="/api/carts/{{cid}}/product/{{this._id}}" method="POST">
+            <input type="hidden" name="quantity" value="1"> <!-- Puedes ajustar la cantidad si es necesario -->
+            <button type="submit">AGREGAR AL CARRITO</button>
+        </form>
+
+    </div>
+    {{/each}}
+
+    <div class="pagination">
+        {{#if hasPrevPage}}
+        <a href="/products?page={{prevPage}}"> Anterior </a>
+        {{/if}}
+
+        <span> Página {{currentPage}} de {{totalPages}} </span>
+
+        {{#if hasNextPage}}
+        <a href="/products?page={{nextPage}}"> Siguiente </a>
+        {{/if}}
+    </div>
+
+</div>
+
+<a href="/cart">Ver carrito</a>
+
+<form action="/api/sessions/logout" method="POST">
+    <button type="submit">Logout</button>
+</form>

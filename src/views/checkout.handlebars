@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Confirmación de Compra</h1>
+    <p>Gracias por tu compra, {{cliente}}!</p>
+    <p>Email: {{email}}</p>
+    <p>Número de Ticket: {{numTicket}}</p>
+
+    <h2>Resumen de Productos</h2>
+    <ul>
+        {{#each productos}}
+            <li>{{this.product.title}} - Cantidad: {{this.quantity}}</li>
+        {{/each}}
+    </ul>
+
+    <a href="/products">Volver a la tienda</a>
+
+    <script src="/scripts.js"></script>
+</body>
+</html>

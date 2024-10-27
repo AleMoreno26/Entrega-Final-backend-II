@@ -1,0 +1,28 @@
+<h1>Carrito de Compras</h1>
+{{#each cart.products}}
+<tr>
+    <td>{{this.product.title}}</td>
+    <td>
+        <input type="number" value="{{this.quantity}}" min="1" id="quantity-{{@index}}">
+    </td>
+    <td>${{this.product.price}}</td>
+    <td>
+        <button
+            onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', document.getElementById('quantity-{{@index}}').value)">Actualizar</button>
+        <button onclick="removeProduct('{{../cart._id}}', '{{this.product._id}}')">Eliminar</button>
+    </td>
+</tr>
+{{/each}}
+</tbody>
+</table>
+<h2>Total: ${{calcularTotal cart.products}}</h2>
+<button onclick="finalizarCompra('{{cart._id}}')">Finalizar Compra</button>
+{{else}}
+<p>No hay productos en el carrito.</p>
+{{/if}}
+
+<a href="/products">Seguir comprando</a>
+
+</body>
+
+</html>

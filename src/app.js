@@ -5,13 +5,11 @@ import CartRouter from './routes/carts.router.js';
 import ViewsRouter from './routes/views.router.js';
 import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
-import session from 'express-session';
-import MongoStore from "connect-mongo";
 import sessionsRouter from "./routes/sessions.router.js";
-import viewsRouter from "./routes/views.router.js";
+import cors from "cors";
 import "./database.js"
 import passport from 'passport';
-import initializePassport from './config/passport.config.js';
+import initializePassport from './config/config.js';
 
 // Inicializa el servidor Express
 const app = express();
@@ -36,6 +34,7 @@ app.use(express.static("./src/public"));
 app.use(cookieParser());
 initializePassport();
 app.use(passport.initialize());
+app.use(cors());
 
 
 // Rutas
@@ -43,6 +42,8 @@ app.use('/api/products', ProductRouter);
 app.use('/api/carts', CartRouter);
 app.use('/', ViewsRouter);
 app.use("/api/sessions", sessionsRouter); 
+// router para tickets
+
 
 
 // Configura el puerto y arranca el servidor
@@ -52,7 +53,6 @@ const httpServer = app.listen(PUERTO, () => {
  
 // ProductManager
 import ProductManager from './dao/db/product-manager-db.js';
-import ProductModel from './dao/models/product.models.js';
 const manager = new ProductManager();
 
 

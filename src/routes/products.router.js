@@ -1,78 +1,23 @@
-import { Router } from 'express';
-import ProductManager from '../dao/db/product-manager-db.js';
+import Router from 'express';
 const router = Router();
-const manager = new ProductManager();
+import ProductController from '../controllers/product.controller.js';
+const controller = new ProductController();
 
 
-router.get("/", async (req, res) => {
-    const limit = req.query.limit;
-    const sort = req.query.sort; // Obtener el parámetro 'sort' de la query
-
-    try {
-        let arrayProductos = await manager.getProducts();
-
-        // Aplicar ordenamiento si el parámetro 'sort' está presente
-        if (sort === 'asc') {
-            arrayProductos.sort((a, b) => a.price - b.price);
-        } else if (sort === 'desc') {
-            arrayProductos.sort((a, b) => b.price - a.price);
-        }
-
-        // Limitar el número de productos si se especifica un límite
-        if (limit) {
-            res.send(arrayProductos.slice(0, limit));
-        } else {
-            res.send(arrayProductos);
-        }
-    } catch (error) {
-        res.status(500).send("Error interno del servidor");
-    }
-});
+router.get("/", controller.getProducts);
 
 //Buscar producto por id: 
 
-router.get("/:pid", async (req, res) => {
-    let id = req.params.pid;
-    try {
-        const producto = await manager.getProductById(id);
-
-        if (!producto) {
-            res.send("Producto no encontrado");
-        } else {
-            res.send(producto);
-        }
-    } catch (error) {
-        res.send("Error al buscar ese id en los productos");
-    }
-})
+router.get("/:pid", controller.getProductByid);
 
 
-//Agregar nuevo producto: 
+// Agregar nuevo producto:
+router.post("/", controller.createProduct);
 
-router.post("/", async (req, res) => {
-    const nuevoProducto = req.body;
-    
-    try {
-        await manager.addProduct(nuevoProducto); 
+// Actualizar producto por ID:
+router.put("/:pid", controller.updateProduct); 
 
-        res.status(201).send("Producto agregado exitosamente"); 
-    } catch (error) {
-        res.status(500).send({status: "error", message: error.message});
-    }
-})
-
-// Eliminar producto por ID
-router.delete('/:pid', async (req, res) => {
-    let id = parseInt(req.params.pid);
-    try {
-        await manager.deleteProduct(id);
-        const productosActualizados = await manager.getProducts();
-        req.app.get('io').emit('productos', productosActualizados);  // Emitir evento
-
-        res.status(200).send('Producto eliminado');
-    } catch (error) {
-        res.status(500).send('Error al querer eliminar el producto seleccionado');
-    }
-});
+// Eliminar producto por ID:
+router.delete('/:pid', controller.deleteProduct)
 
 export default router;

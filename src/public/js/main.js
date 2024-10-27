@@ -36,6 +36,8 @@ const renderProductos = (productos) => {
     })
 };
 
+
+
 // funcion boton eliminar carrito
 function eliminarDelCarrito(productoId) {
     const carritoId = window.location.pathname.split('/').pop(); // Obtiene el ID del carrito desde la URL

@@ -1,33 +1,11 @@
-<h1>Mis Productos</h1>
-<h2>Bienvenido, {{user.first_name}} {{user.last_name}}</h2>
-<div class="contenedor">
-    {{#each productos}}
-    <div class="card">
-        <img src="{{this.thumbnails}}" alt="{{this.title}}" style="width: 100px; height: 100px;">
-        <p>{{this.title}}</p>
-        <p>Descripcion:{{this.description}}</p>
-        <p>Precio:{{this.price}}</p>
-        <p>Codigo:{{this.code}}</p>
-        <p>Stock:{{this.stock}}</p>
-        <p>Categoria:{{this.category}}</p>
-        <button onclick="agregarCarrito({{this.id}})">AGREGAR AL CARRITO</button>
-    </div>
-    {{/each}}
+<h1>Mi Perfil</h1>
+<h2>Bienvenido, {{user.usuario}}</h2>
+<h3>Email: {{user.email}}</h3>
+<h3>Rol: {{user.role}}</h3>
 
-    <div class="pagination">
-        {{#if hasPrevPage}}
-        <a href="/products?page={{prevPage}}"> Anterior </a>
-        {{/if}}
-
-        <span> Página {{currentPage}} de {{totalPages}} </span>
-
-        {{#if hasNextPage}}
-        <a href="/products?page={{nextPage}}"> Siguiente </a>
-        {{/if}}
-    </div>
-    
-</div>
+<a href="/products">Ver productos</a>
+<a href="/cart">Ver carrito</a>
 
 <form action="/api/sessions/logout" method="POST">
-    <button type="submit">Logout</button>
+    <button type="submit"> Logout </button>
 </form>

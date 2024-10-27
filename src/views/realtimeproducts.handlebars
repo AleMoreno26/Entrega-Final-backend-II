@@ -1,25 +1,41 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos en Tiempo Real</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h2>Productos en Tiempo Real</h2>
-    <div id="contenedorProductos"></div>
+    <h1>Productos Disponibles</h1>
+    <div id="products-container">
+        {{#each products}}
+            <div class="product-card">
+                <h2>{{this.title}}</h2>
+                <p>Descripción: {{this.description}}</p>
+                <p>Precio: ${{this.price}}</p>
+                <button onclick="addToCart('{{this._id}}')">Agregar al Carrito</button>
+            </div>
+        {{/each}}
+    </div>
 
-    <form id="nuevoProductoForm">
-        <input type="text" name="titulo" placeholder="Título" required>
-        <input type="text" name="descripcion" placeholder="Descripción" required>
-        <input type="number" name="precio" placeholder="Precio" required>
-        <input type="text" name="codigo" placeholder="Código" required>
-        <input type="number" name="stock" placeholder="Stock" required>
-        <button type="submit">Agregar Producto</button>
-    </form>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="/scripts.js"></script>
+    <script>
+        // Lógica para conectar con WebSocket y recibir productos en tiempo real
+        const socket = new WebSocket('ws://localhost:8080'); // Asegúrate de tener la URL correcta
+        socket.onmessage = function(event) {
+            const products = JSON.parse(event.data);
+            const container = document.getElementById('products-container');
+            container.innerHTML = ''; // Limpiar contenedor antes de renderizar
+            products.forEach(product => {
+                const productCard = `<div class="product-card">
+                    <h2>${product.title}</h2>
+                    <p>Descripción: ${product.description}</p>
+                    <p>Precio: $${product.price}</p>
+                    <button onclick="addToCart('${product._id}')">Agregar al Carrito</button>
+                </div>`;
+                container.innerHTML += productCard;
+            });
+        };
+    </script>
 </body>
 </html>
