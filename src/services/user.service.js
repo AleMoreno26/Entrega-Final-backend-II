@@ -4,33 +4,34 @@ import { createHash, isValidPassword } from "../utils/util.js";
 
 class UserServices {
     async registerUser(userData) {
+        // Verifica si el usuario existe
         const existingUser = await userRepository.getUserByEmail(userData.email);
         if (existingUser) {
             const error = new Error("El usuario ya existe");
-            error.code = 'USER_EXISTS'; 
+            error.code = 'USER_EXISTS';
             throw error;
-        }; 
+        }
 
         // Crear un carrito y asociar el ID al usuario
-    const newCart = new CartModel({ user: null, products: [] });
-    const savedCart = await newCart.save();  // Guarda el carrito y obtén su ID
+        const newCart = new CartModel({ user: null, products: [] });
+        const savedCart = await newCart.save(); 
 
-    // Asignar el carrito al usuario
-    userData.cart = savedCart._id;
+        // Asignar el carrito al usuario
+        userData.cart = savedCart._id;
 
-
-        userData.password = createHash(userData.password); 
-        return await userRepository.createUser(userData); 
+        userData.password = createHash(userData.password);
+        return await userRepository.createUser(userData);
     }
 
     async loginUser(email, password) {
-        const user = await userRepository.getUserByEmail(email); 
-        if(!user || !isValidPassword(password, user)) throw new Error("Credenciales incorrectas"); 
-        return user; 
+        const user = await userRepository.getUserByEmail(email);
+        if (!user || !isValidPassword(password, user)) {
+            return null;
+        }
+        return user;
     }
-
     async getUserById(id) {
-        return await userRepository.getUserById(id); 
+        return await userRepository.getUserById(id);
     }
 
     // metodo para actulizar y borar usuarios

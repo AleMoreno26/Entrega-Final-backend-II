@@ -1,6 +1,7 @@
 import userService from "../services/user.service.js";
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 import UserDTO from "../dto/user.dto.js";
+import { cartService } from "../services/index.js";
 
 class UserController {
 
@@ -24,9 +25,11 @@ class UserController {
             res.redirect("/api/sessions/current");
 
         } catch (error) {
+
             if (error.code === 'USER_EXISTS') {
                 return res.status(400).send({ error: "El usuario ya está registrado" });
             }
+            console.error("Error en el registro:", error);
             res.status(500).send({ error: "Error interno del servidor" });
         }
     }
@@ -37,7 +40,7 @@ class UserController {
         try {
             const user = await userService.loginUser(email, password);
             if (!user) {
-                return res.status(401).send({ error: "Credenciales incorrectas" });
+                return res.status(401).send({ error: "Usuario no registrado o credenciales incorrectas" });
             }
 
             const token = jwt.sign({ usuario: `${user.first_name} ${user.last_name}`, email: user.email, role: user.role }, "coderhouse", { expiresIn: "1h" });
@@ -46,6 +49,10 @@ class UserController {
             res.redirect("/api/sessions/current");
 
         } catch (error) {
+
+            if (error.message === "Credenciales incorrectas") {
+                return res.status(401).send({ error: "Usuario no registrado o credenciales incorrectas" });
+            }
             res.status(500).send({ error: "Error interno del servidor" });
         }
     }

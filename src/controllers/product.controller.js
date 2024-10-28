@@ -5,7 +5,7 @@ class ProductController {
     async getProducts(req, res) {
         const { limit = 10, page = 1, sort, query } = req.query;
         try {
-            const products = await productService.getProducts({ limit, page, sort, query }); //ver si es getProducts o sin la s 
+            const products = await productService.getProducts({ limit, page, sort, query });
             res.send(products);
         } catch (error) {
             res.status(500).send("Error interno del servidor");
@@ -23,7 +23,7 @@ class ProductController {
         }
     }
 
-    async createProduct(req, res) { 
+    async createProduct(req, res) {
         try {
             const product = await productService.createProduct(req.body);
             res.status(201).send(product);
@@ -34,12 +34,12 @@ class ProductController {
 
     async updateProduct(req, res) {
         const { pid } = req.params;
-        const productData = req.body; 
-    
+        const productData = req.body;
+
         try {
             const updatedProduct = await productService.updateProduct(pid, productData);
             if (!updatedProduct) return res.status(404).send("Producto no encontrado");
-    
+
             res.send(updatedProduct);
         } catch (error) {
             res.status(500).send("Error al actualizar el producto");
@@ -47,12 +47,12 @@ class ProductController {
     }
 
     async deleteProduct(req, res) {
-        const { pid } = req.params; 
-    
+        const { pid } = req.params;
+
         try {
             const deletedProduct = await productService.deleteProduct(pid);
             if (!deletedProduct) return res.status(404).send("Producto no encontrado");
-    
+
             res.send({ message: "Producto eliminado correctamente" });
         } catch (error) {
             res.status(500).send("Error al eliminar el producto");

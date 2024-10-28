@@ -3,12 +3,12 @@ import CartModel from "./models/cart.models.js";
 class CartDao {
 
     async findById (id) {
-        console.log("Buscando carrito con ID:", id);  // Añade este log
+        console.log("Buscando carrito con ID:", id); 
         return await CartModel.findById(id).populate('products.product', '_id title price');
     }
 
     async save (cartData) {
-        const cart = new CartModel(cartData);
+        const cart = new CartModel(cartData);   
         return await cart.save();
     }
 

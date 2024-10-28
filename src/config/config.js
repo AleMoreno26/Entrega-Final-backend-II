@@ -12,11 +12,14 @@ const initializePassport = () => {
     }, async (jwt_payload, done) => {
         try {
             return done(null, jwt_payload);
+            //   // Asegúrate de que el payload contenga el ID del usuario
+            //   return done(null, { id: jwt_payload.id, email: jwt_payload.email })
         } catch (error) {
             return done(error);
         }
     }))
 
+    
 
 }
 

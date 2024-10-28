@@ -23,25 +23,35 @@
     })
 
 
+
+
+
+
+    
+
+
+
+
     // ruta products
 
     router.get('/products', passport.authenticate("jwt",{session: false,}), soloUser, async (req, res) => {
+        console.log("Usuario autenticado:", req.user); 
         let page = req.query.page || 1;
         let limit = 4;
 
         // Obtén el carrito del usuario autenticado
     const userCartId = req.user.cart;
-
+    console.log("ID del carrito:", userCartId); 
 
         const paginacion = await ProductModel.paginate({}, { 
             limit, 
             page,
         });
         const productos = paginacion.docs.map(producto => producto.toObject());  // Convertir a objetos planos(permisos handlebars)
-        
+        console.log("ID del carrito:", userCartId);
         res.render('products', {
             productos,
-            cid: userCartId,  // Asegúrate de pasar el carrito del usuario
+            cid: userCartId, 
             hasPrevPage: paginacion.hasPrevPage,
             hasNextPage: paginacion.hasNextPage,
             prevPage: paginacion.prevPage,

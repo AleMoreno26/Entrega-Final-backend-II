@@ -1,6 +1,5 @@
 import UserModel from "./models/user.models.js";
 
-// Metodos Mongoose
 
 class UserDao {
     async findById(id) {

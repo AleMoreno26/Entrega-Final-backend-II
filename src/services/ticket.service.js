@@ -1,15 +1,15 @@
 import TicketModel from '../dao/models/ticket.models.js';
-import { generarNumeroTicket } from '../utils/cartUtil.js'; // Asegúrate de que el nombre coincida
+import { generarNumeroTicket } from '../utils/cartUtil.js'; 
 
 class TicketService {
     async createTicket(amount, purchaser) {
         try {
-            const code = generarNumeroTicket(); // Genera el número de ticket
+            const code = generarNumeroTicket(); 
             const newTicket = new TicketModel({
                 code,
                 amount,
                 purchaser,
-                purchase_datetime: new Date() // Fecha y hora actual
+                purchase_datetime: new Date() 
             });
 
             return await newTicket.save();

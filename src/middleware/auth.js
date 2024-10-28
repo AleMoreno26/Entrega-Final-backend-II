@@ -1,4 +1,4 @@
-import { json } from "express";
+
 import passport from "passport";
 
 export const isAuthenticated = (req, res, next) => {

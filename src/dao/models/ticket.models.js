@@ -17,7 +17,7 @@ amount: {
 },
 purchaser: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'user',
     requerid: true
 }
 });
